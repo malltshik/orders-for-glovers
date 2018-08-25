@@ -32,7 +32,7 @@ class API {
     @RequestMapping("/")
     @ResponseBody
     String root() {
-        return "Hola";
+        return "¡Hola!";
     }
 
     @RequestMapping("/orders")

@@ -1,16 +1,17 @@
 package com.glovoapp.backender;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertEquals;
 
-class OrderRepositoryTest {
+public class OrderRepositoryTest {
+
     @Test
-    void findAll() {
+    public void findAll() {
         List<Order> orders = new OrderRepository().findAll();
 
         assertFalse(orders.isEmpty());

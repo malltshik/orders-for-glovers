@@ -11,12 +11,12 @@ public class OrderProperties {
     private String[] keywords = {"pizza", "cake", "flamingo"};
 
     /**
-     * Bicycle distance limit. Orders more then this value won't shows to the glover on a bicycle
+     * Bicycle distance limit in kilometers. Orders more then this value won't shows to the glover on a bicycle
      */
     private double bicycleLimit = 5.0;
 
     /**
-     * Sorting param in km. Orders will be sorted by this value (one by one every each distance step)
+     * Sorting param in kilometers. Orders will be sorted by this value (one by one every each distance step)
      */
     private double distanceStep = 0.5;
 

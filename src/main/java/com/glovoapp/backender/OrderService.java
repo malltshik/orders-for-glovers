@@ -42,10 +42,10 @@ public class OrderService {
     }
 
     private List<Order> filterByKeyWords(Courier courier, List<Order> orders) {
-        if (courier.getBox()) {
+        if (!courier.getBox()) {
             orders = orders.parallelStream()
                     .filter(order -> Arrays.stream(props.getKeywords())
-                            .anyMatch(w -> containsIgnoreCase(order.getDescription(), w)))
+                            .noneMatch(w -> containsIgnoreCase(order.getDescription(), w)))
                     .collect(toList());
         }
         return orders;

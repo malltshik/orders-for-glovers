@@ -1,16 +1,20 @@
 package com.glovoapp.backender;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertEquals;
 
-class CourierRepositoryTest {
+public class CourierRepositoryTest {
+
     @Test
-    void findOneExisting() {
+    public void findOneExisting() {
         Courier courier = new CourierRepository().findById("courier-1");
         Courier expected = new Courier().withId("courier-1")
                 .withBox(true)
@@ -22,13 +26,13 @@ class CourierRepositoryTest {
     }
 
     @Test
-    void findOneNotExisting() {
+    public void findOneNotExisting() {
         Courier courier = new CourierRepository().findById("bad-courier-id");
         assertNull(courier);
     }
 
     @Test
-    void findAll() {
+    public void findAll() {
         List<Courier> all = new CourierRepository().findAll();
         assertFalse(all.isEmpty());
     }
