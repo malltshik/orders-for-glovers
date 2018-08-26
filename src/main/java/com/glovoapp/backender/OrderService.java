@@ -11,6 +11,16 @@ import static com.glovoapp.backender.Vehicle.BICYCLE;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 
+/**
+ * Service which provide filtered and sorted orders for special courier.
+ *
+ * Every filter isolate to own method. Filtering and sorting properties provided with properties file.
+ * @see OrderProperties for more details about properties.
+ * @see OrderRepository for more details about order persistance layer
+ *
+ * @author Artem Gavrilov
+ *
+ */
 @Service
 public class OrderService {
 

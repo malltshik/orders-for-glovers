@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonMap;
 
+/**
+ * API controller with method which provide orders (filtered and sorted for special courier)
+ */
 @Controller
 class API {
 
