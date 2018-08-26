@@ -9,17 +9,17 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  *
  * Sentence "Ideally, you shouldn't need to modify any of the provided classes" is in test requirements.
  * <a href="file:../WORDING.md">WORDING.md</a>
- * However I did that a bit, cause I had to run web test for controller {@link API}
+ * However, I did that a bit, cause I had to run a web test for the controller {@link API}
  *
- * Also I think that this structure of project not so useful as possible. I would like to create some packages
- * for layers of application (e.g. dao, business, rest api, utilities and so on). It makes application easies to read
- * and understand.
+ * Also, I think that this structure of project not so useful as possible. I would like to create some packages
+ * for layers of the application (e.g. dao, business, rest api, utilities and so on). It makes application easier
+ * to read and understand.
  *
- * I also would like to create interfaces for repositories and service for avoid couple Spring specific problems
+ * I also would like to create interfaces for repositories and service for avoiding couple Spring specific problems
  * with injection classes. And for more flexible structure. Today we have .json files, tomorrow relation database,
  * after that in-memory system. But interface would be only one with a strict API. For services the same.
  *
- * If not this sentence in test requirements, I did every above.
+ * If not this sentence in test requirements, I did everything above.
  *
  * @author Artem Gavrilov
  */
