@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -23,6 +24,7 @@ import static org.hamcrest.Matchers.hasSize;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class OrderServiceTest {
 
     private final static Location LOCATION = new Location(41.39980694963036, 2.1829698538474984);
@@ -31,6 +33,9 @@ public class OrderServiceTest {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderProperties orderProperties;
 
     @Test
     public void findAllKeywordsTest() {
@@ -57,18 +62,62 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void findAllOrderingsTest() {
-        // Orders close then 2 kilometers for BICYCLE
+    public void findAllOrderingTest() {
         List<Order> all = orderService.findAll(COURIER.withVehicle(MOTORCYCLE).withBox(true));
         assertFalse(all.isEmpty());
-        assertThat(all, hasSize(6));
+        assertThat(all, hasSize(7));
         // DISTANCE,FOOD,VIP - ordering
-        assertEquals(all.get(0).getId(), "order-5");
+        assertEquals(all.get(0).getId(), "order-1");
+        assertEquals(all.get(1).getId(), "order-2");
+        assertEquals(all.get(2).getId(), "order-3");
+        assertEquals(all.get(3).getId(), "order-5");
+        assertEquals(all.get(4).getId(), "order-7");
+        assertEquals(all.get(5).getId(), "order-6");
+        assertEquals(all.get(6).getId(), "order-4");
+    }
+
+    @Test
+    public void findAllOrdering2Test() {
+        // Change order fields priority
+        String[] originSortFields = orderProperties.getSortFields();
+        orderProperties.setSortFields(new String[]{"FOOD", "VIP", "DISTANCE"});
+        // Query
+        List<Order> all = orderService.findAll(COURIER.withVehicle(MOTORCYCLE).withBox(true));
+        // Change fields priority back for other tests
+        orderProperties.setSortFields(originSortFields);
+
+        assertFalse(all.isEmpty());
+        assertThat(all, hasSize(7));
+        // FOOD,VIP,DISTANCE - ordering
+        assertEquals(all.get(0).getId(), "order-7");
         assertEquals(all.get(1).getId(), "order-1");
         assertEquals(all.get(2).getId(), "order-2");
         assertEquals(all.get(3).getId(), "order-3");
-        assertEquals(all.get(4).getId(), "order-6");
-        assertEquals(all.get(5).getId(), "order-4");
+        assertEquals(all.get(4).getId(), "order-4");
+        assertEquals(all.get(5).getId(), "order-5");
+        assertEquals(all.get(6).getId(), "order-6");
+    }
+
+    @Test
+    public void findAllOrdering3Test() {
+        // Change order fields priority
+        String[] originSortFields = orderProperties.getSortFields();
+        orderProperties.setSortFields(new String[]{"VIP", "DISTANCE", "FOOD"});
+        // Query
+        List<Order> all = orderService.findAll(COURIER.withVehicle(MOTORCYCLE).withBox(true));
+        // Change fields priority back for other tests
+        orderProperties.setSortFields(originSortFields);
+
+        assertFalse(all.isEmpty());
+        assertThat(all, hasSize(7));
+        // FOOD,VIP,DISTANCE - ordering
+        assertEquals(all.get(0).getId(), "order-3");
+        assertEquals(all.get(1).getId(), "order-7");
+        assertEquals(all.get(2).getId(), "order-4");
+        assertEquals(all.get(3).getId(), "order-1");
+        assertEquals(all.get(4).getId(), "order-2");
+        assertEquals(all.get(5).getId(), "order-5");
+        assertEquals(all.get(6).getId(), "order-6");
     }
 
 }

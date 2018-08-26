@@ -55,16 +55,16 @@ public class OrderService {
         for (String sortField : props.getSortFields()) {
             switch (sortField.toUpperCase()) {
                 case "DISTANCE":
-                    int o1Distance = (int) (calculateDistance(courier.getLocation(), o1.getPickup()) / props.getDistanceStep());
-                    int o2Distance = (int) (calculateDistance(courier.getLocation(), o2.getPickup()) / props.getDistanceStep());
+                    double o1Distance = calculateDistance(courier.getLocation(), o1.getPickup()) / props.getDistanceStep();
+                    double o2Distance = calculateDistance(courier.getLocation(), o2.getPickup()) / props.getDistanceStep();
                     if (o1Distance == o2Distance) break;
                     return o1Distance > o2Distance ? 1 : -1;
                 case "VIP":
-                    int byVip = o1.getVip().compareTo(o2.getVip());
+                    int byVip = o2.getVip().compareTo(o1.getVip());
                     if (byVip == 0) break;
                     return byVip;
                 case "FOOD":
-                    int byFood = o1.getFood().compareTo(o2.getFood());
+                    int byFood = o2.getFood().compareTo(o1.getFood());
                     if (byFood == 0) break;
                     return byFood;
             }
