@@ -15,12 +15,14 @@ import java.util.List;
 class CourierRepository {
     private static final String COURIERS_FILE = "/couriers.json";
     private static final List<Courier> couriers;
+    private static long count;
 
     static {
         try (Reader reader = new InputStreamReader(CourierRepository.class.getResourceAsStream(COURIERS_FILE))) {
             Type type = new TypeToken<List<Courier>>() {
             }.getType();
             couriers = new Gson().fromJson(reader, type);
+            count = couriers.size();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -35,5 +37,9 @@ class CourierRepository {
 
     List<Courier> findAll() {
         return new ArrayList<>(couriers);
+    }
+
+    long getCount() {
+        return count;
     }
 }

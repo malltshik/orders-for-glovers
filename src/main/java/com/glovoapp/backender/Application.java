@@ -19,7 +19,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * with injection classes. And for more flexible structure. Today we have .json files, tomorrow relation database,
  * after that in-memory system. But interface would be only one with a strict API. For services the same.
  *
- * If not this sentence in test requirements, I did everything above.
+ * If not this sentence in test requirements, I did everything above. Everything else I did as well as I can.
  *
  * @author Artem Gavrilov
  */
